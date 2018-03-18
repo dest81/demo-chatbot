@@ -1,4 +1,5 @@
-psycopg2
 Django==1.9.5
-channels==0.11.0
+channels==1.1.6
 chatterbot==0.8.4
+psycopg2
+asgiref==1.1.2
