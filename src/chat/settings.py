@@ -7,7 +7,7 @@ SECRET_KEY = '=fyn9+99bjlnadv$0%gowwl5nvg-%!*$2%uwg)v5@gh)lkpuwg'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.10.10.10']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -55,14 +55,15 @@ CHATTERBOT = {
         {
             "import_path": "chatterbot.logic.BestMatch",
             "statement_comparison_function": "chatterbot.comparisons.levenshtein_distance",
-            "response_selection_method": "chatterbot.response_selection.get_random_response"
         },
-        {
-            'import_path': 'chatterbot.logic.LowConfidenceAdapter',
-            'threshold': 0.90,
-            'default_response': 'I am sorry, but I do not understand.'
-        }
+        # {
+        #     'import_path': 'chatterbot.logic.LowConfidenceAdapter',
+        #     'threshold': 0.90,
+        #     'default_response': 'I am sorry, but I do not understand.'
+        # }
+
     ],
+    "response_selection_method": "chatterbot.response_selection.get_random_response",
     'trainer': 'chatterbot.trainers.ListTrainer',
     'django_app_name': 'django_chatterbot'
 }

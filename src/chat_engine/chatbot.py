@@ -35,7 +35,7 @@ class ChatterBot(object):
                         train.append(train_array[0])
                         train.append(item)
                 else:
-                    train = train_array
+                    train = [tr for tr in train_array if tr]
             else:
                 train = []
         return train
