@@ -69,13 +69,17 @@ body, div, p {
 
     z-index: 9999;
 
-    background-color: #6f5499;
+    background-color: #eceaef;
     display: flex;
     align-items: center;
     justify-content: center;
 
     opacity: 1;
     transition: 1s all;
+    flex-direction: column;
+}
+.connect-logo {
+    display: block;
 }
 .connect-toolbar--online {
     transform: translateY(-100%);
@@ -98,7 +102,6 @@ body, div, p {
     outline: none;
     border: 1px solid #cdbfe3;
     border-left: none;
-    color: white;
 
     cursor: pointer;
 }

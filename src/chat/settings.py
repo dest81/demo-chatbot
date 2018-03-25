@@ -50,34 +50,52 @@ MIDDLEWARE_CLASSES = [
 # )
 
 CHATTERBOT = {
-    'name': 'RIPE Bot',
+    'name': 'RIPY',
+    'logic_adapters': [
+        {
+            "import_path": "chatterbot.logic.BestMatch",
+            "statement_comparison_function": "chatterbot.comparisons.levenshtein_distance",
+            "response_selection_method": "chatterbot.response_selection.get_random_response"
+        },
+        {
+            'import_path': 'chatterbot.logic.LowConfidenceAdapter',
+            'threshold': 0.90,
+            'default_response': 'I am sorry, but I do not understand.'
+        }
+    ],
     'trainer': 'chatterbot.trainers.ListTrainer',
     'django_app_name': 'django_chatterbot'
 }
 
+# CHATTERBOT = {
+#     'name': 'RIPE Bot',
+#     'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
+#     'training_data': [
+#         'chatterbot.corpus.english.ai',
+#         'chatterbot.corpus.english.botprofile',
+#         'chatterbot.corpus.english.computers',
+#         'chatterbot.corpus.english.conversations',
+#         'chatterbot.corpus.english.emotion',
+#         'chatterbot.corpus.english.food',
+#         'chatterbot.corpus.english.gossip',
+#         'chatterbot.corpus.english.greetings',
+#         'chatterbot.corpus.english.history',
+#         'chatterbot.corpus.english.humor',
+#         'chatterbot.corpus.english.literature',
+#         'chatterbot.corpus.english.money',
+#         'chatterbot.corpus.english.movies',
+#         'chatterbot.corpus.english.politics',
+#         'chatterbot.corpus.english.psychology',
+#         'chatterbot.corpus.english.science',
+#         'chatterbot.corpus.english.sports',
+#         'chatterbot.corpus.english.trivia',
+#     ],
+#     'django_app_name': 'django_chatterbot'
+# }
+
 CHATTERBOT_CORPUS = {
     'name': 'RIPE Bot',
-    'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
-    'training_data': [
-        'chatterbot.corpus.english.ai',
-        'chatterbot.corpus.english.botprofile',
-        'chatterbot.corpus.english.computers',
-        'chatterbot.corpus.english.conversations',
-        'chatterbot.corpus.english.emotion',
-        'chatterbot.corpus.english.food',
-        'chatterbot.corpus.english.gossip',
-        'chatterbot.corpus.english.greetings',
-        'chatterbot.corpus.english.history',
-        'chatterbot.corpus.english.humor',
-        'chatterbot.corpus.english.literature',
-        'chatterbot.corpus.english.money',
-        'chatterbot.corpus.english.movies',
-        'chatterbot.corpus.english.politics',
-        'chatterbot.corpus.english.psychology',
-        'chatterbot.corpus.english.science',
-        'chatterbot.corpus.english.sports',
-        'chatterbot.corpus.english.trivia',
-    ],
+    'trainer': 'chatterbot.trainers.UbuntuCorpusTrainer',
     'django_app_name': 'django_chatterbot'
 }
 
@@ -104,24 +122,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'chat.wsgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chatbot',
-        'USER': 'chatbot',
-        'PASSWORD': 'chatbot',     # noqa
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'chatbot',
+#         'USER': 'chatbot',
+#         'PASSWORD': 'chatbot',     # noqa
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 LANGUAGE_CODE = 'en-us'
 #LANGUAGE_CODE = 'ru'

@@ -115,13 +115,22 @@
 
                 return (
                     <div className="chat-window">
+
                         <div className={connectToolbarClass}>
+                            <h1>Hello, I am RIPY</h1>
+                            <div className="connect-logo">
+                                <img src="static/ripy_logo.png" width="250" height="250" />
+                            </div>
+                            <h2>What is your name?</h2>
+                            <div>
                             <input defaultValue={this.state.username}
                                 placeholder="Enter your name"
                                 className="connect-toolbar__username"
                                 type="text"
                                 ref="username" />
                             <button className="connect-toolbar__connect-button" onClick={this.connect}>{this.props.joinButtonText}</button>
+                            </div>
+
                         </div>
 
                         <div className="container">
@@ -236,7 +245,7 @@
 
         let options = {
             username: localStorage.username,
-            joinButtonText: '{% trans "Join chat" %}',
+            joinButtonText: '{% trans "Talk with me" %}',
             messageInputPlaceholder: '{% trans "Enter your message" %}'
         }
         ReactDOM.render(<ChatWindow {...options} />, document.getElementById('app'))
