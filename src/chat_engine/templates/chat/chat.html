@@ -26,6 +26,10 @@
     <script type="text/babel">
 
         class Message extends React.Component {
+            rawMarkup(){
+                var rawMarkup = this.props.content
+                return { __html: this.props.text };
+            }
             render() {
                 let className = "message message--" + this.props.type;
                 return (
@@ -37,7 +41,7 @@
                             : null
                         }
                         <span className="message__text">
-                            {this.props.text}
+                            <span dangerouslySetInnerHTML={this.rawMarkup()}></span>
                         </span>
                     </div>
                 )
